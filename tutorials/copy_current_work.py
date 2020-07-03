@@ -1,7 +1,9 @@
 from pathlib import Path
 import shutil 
 from functools import reduce
-import os
+import sys,os
+
+sys.path.append(os.path.realpath('..'))
 
 current_work_path = Path('./current_work')
 projects_path = Path("./projects")

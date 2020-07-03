@@ -2,9 +2,12 @@ import json
 from pathlib import Path
 import string
 import re
+import sys,os
 
-base_path = Path('../projects')
-output_path = Path('../../lib/phoenix_react_playground/tutorializing/book_contents.ex')
+sys.path.append(os.path.realpath('..'))
+
+base_path = Path('./projects')
+output_path = Path('../backend/game_assistant/lib/game_assistant/tutorializing/book_contents.ex')
 
 def convertToElixirJsonString(o):
     s = ""
@@ -14,38 +17,35 @@ def convertToElixirJsonString(o):
 
 def main():
     print("Collecting project scripts...")
-    result = {'pages': {}}
-    all_chapters = [x for x in base_path.iterdir() if x.is_dir()]
-    for chapter in all_chapters:
-        all_pages = [(x, int(x.parts[-1])) for x in chapter.iterdir() if x.is_dir()]
-        for (page_path, page_number) in all_pages:
-            result['pages'][str(page_number)] = {}
-            scripts = page_path.glob("**/*.cs")
+    result = {'projects': {}}
+    all_projects = [x for x in base_path.iterdir() if x.is_dir()]
+    for project in all_projects:
+        project_name = project.parts[-1].replace("_", " ")
+        result['projects'][project_name] = {}
+        all_chapters = project.iterdir()
+        for chapter in all_chapters:
+            chapter_name = chapter.parts[-1].replace("_", " ")
+            print(f"chapter: {chapter_name}")
+            result['projects'][project_name][chapter_name] = {}
+
+            scripts = chapter.glob("**/*.cs")
             for script_path in scripts:
-                adjusted_path = "/".join(script_path.parts[len(page_path.parts):])
+                adjusted_path = "/".join(script_path.parts[len(chapter.parts):])
                 with open(script_path, "r", encoding='utf-8') as f:
                     script_contents_raw = f.read()
                     printable = set(string.printable)
                     script_contents = ''.join(filter(lambda x: x in printable, script_contents_raw))
 
-                result['pages'][str(page_number)][adjusted_path] = script_contents
+                result['projects'][project_name][chapter_name][adjusted_path] = script_contents
 
     print("Scripts collected.")
+
+    print("new structure:")
+
+
     print(f"Copying into '{output_path}' ...")
 
-    if False:
-        result = {
-            "pages": {
-                "100": {
-                    "scripts/file1": "line1;\\nline2;\\nline3;\\nline4;",
-                    "scripts/file2": "brine1;\\nbrine2;\\nbrine3;\\nbrine4;"
-                },
-                "101": {
-                    "scripts/smile1": "cline1;\\nline2;\\nline3;\\nline4;",
-                    "scripts/smile3": "cbrine1;\\nbrine2;\\nbrine3;\\nbrine4;"
-                }
-            }
-        }
+
 
 
     formatted_info_unfixed = repr(json.dumps(result))[1:-1]
@@ -56,7 +56,7 @@ def main():
     with open(output_path, "r", encoding='utf-8') as f:
         file_original = f.read()
         file_rewritten = re.sub(r"# PYSTART.*?# PYEND", f"# PYSTART\n   \"{formatted_info}\"\n# PYEND", file_original, flags=re.DOTALL)
-        print(f"file_original: {len(file_original)}, file_rewritten: {len(file_rewritten)}")
+        print(f"file_original length: {len(file_original)}, file_rewritten length: {len(file_rewritten)}")
 
     with open(output_path, "w", encoding='utf-8') as f:
         f.write(file_rewritten)
