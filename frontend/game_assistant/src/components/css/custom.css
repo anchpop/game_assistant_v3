@@ -1,0 +1,74 @@
+/*
+edit diff-viewer
+*/
+.diff-viewer {
+  margin: 0 auto;
+  border-radius: 8px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  box-shadow: 0 0 30px #1c1e253a;
+}
+
+
+/*
+Increase column size
+*/
+.container {
+  max-width: 80%;
+}
+
+
+
+/*
+directory breadcrumbs
+*/
+
+.directory {
+  padding: 3px;
+  padding-left: 6px;
+}
+
+.directorySlash {
+  opacity: .5;
+  padding-left: 7px;
+  padding-right: 7px;
+}
+.directoryBreadcrumb {
+  opacity: .5;
+}
+
+/*
+General edits
+*/
+
+/*
+Throw in some dark color scheme
+*/
+@media (prefers-color-scheme: dark) {
+  .diff-viewer {
+    box-shadow: 0 0 30px #1c1e25;
+  }
+  input, select, textarea {
+    color: white;
+  }
+
+  header {
+    border-bottom: 1px solid #1f2225;
+  }
+
+
+  a:link {
+    color: #ADD8E6
+  }
+  a:visited {
+    color: #d6ade6
+  }
+  a:hover {
+    color: #b7dde9
+  }
+  a:active {
+    color: #d3eaf1
+  }
+
+}
