@@ -146,6 +146,8 @@ export default () => {
     getCode(projectSelected, chapterSelected, fileSelected, setCode);
   }, [projectSelected, chapterSelected, fileSelected]);
 
+
+
   const projects = availableProjects.map((projectName, key) => {
     return (
       <div className="form-check" key={key}>
@@ -186,7 +188,9 @@ export default () => {
     );
   });
 
+
   const fileSelect = availableFiles.map((filename, key) => {
+
     const fileSplit = filename.split('/');
     const fileDisplay = fileSplit.map((breadcrumb, index) =>
       index !== fileSplit.length - 1 ? (
@@ -202,15 +206,17 @@ export default () => {
     );
     return (
       <div className="form-check" key={key}>
-        <input
-          type="radio"
-          name="address"
-          checked={filename === fileSelected}
-          onChange={() => {
-            setFileSelected(filename);
-          }}
-        />
-        <span className="directory">{fileDisplay}</span>
+        <label>
+          <input
+            type="radio"
+            name="address"
+            checked={filename === fileSelected}
+            onChange={() => {
+              setFileSelected(filename);
+            }}
+          />
+          <span className="directory">{fileDisplay}</span>
+        </label>
       </div>
     );
   });
