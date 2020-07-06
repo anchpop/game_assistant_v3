@@ -8,7 +8,7 @@ import useDarkMode from 'use-dark-mode';
 import Layout from '../components/layout';
 
 
-const api_url = "http://localhost:4000"
+const api_url = "https://game-assistant.gigalixirapp.com/"
 
 
 interface CodeAPI {
