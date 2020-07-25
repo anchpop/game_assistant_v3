@@ -16,6 +16,18 @@ This is a website for utilities that might be useful for readers of [Introductio
 
 Finally, start Phoenix with `mix phx.server`
 
+# Deploying the backend
+
+The backend is currently set up with Gigalixir. To deploy, first make sure you have the gigalixir remote added:
+
+    git remote add gigalixir https://andre%40popovit.ch:7d055dc0-7893-40d3-b7f3-73bb9eb35e2a@git.gigalixir.com/game-assistant.git
+
+(The remote is secret, don't share it with anyone!)
+
+Then push the backend directory!
+
+    git subtree push --prefix backend/game_assistant gigalixir master
+
 # Hacking on the frontend
 
 Start up the backend, and run `gatsby develop` in the frontend to open up a Gatsby development server. Then visit `localhost:8000` to see the site!
