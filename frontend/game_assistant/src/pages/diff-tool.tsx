@@ -247,9 +247,11 @@ export default () => {
       <Konami action={() => setKonamiCodePressed(true)} />
 
 
-      <h2>Hi! I'm your diff assistant. I'll tell you what the code should look like at the end of any section.</h2>
+      <h2>This tool will show you where the code you've written differs from the code as you should have it at a specific point in the book. </h2>
+      <h3>It is divided by sections of each chapter (i.e., the large purple headings in each chapter) and is tied to what the code should
+        look like at the end of that section.</h3>
       <label>
-        What project are you working on?
+        What prototype chapter are you working on?
         <form onSubmit={() => { }}>
           {projects}
         </form>
@@ -258,7 +260,7 @@ export default () => {
         chapters.length > 0 ?
           (
             <label>
-              And what chapter?
+              And what section of the chapter have you just completed?
               <form onSubmit={() => { }}>
                 {chapters}
               </form>
@@ -279,7 +281,7 @@ export default () => {
         )}
 
       <TextareaAutosize
-        placeholder="Your code here!"
+        placeholder="Please paste your code here!"
         value={userCode}
         onChange={(e) => setUserCode(e.target.value)}
       />
