@@ -13,7 +13,7 @@ create_path_from_strings = lambda strs: reduce(lambda acc, x: acc / x, strs, Pat
 def main():
     chapter = input("What chapter have you just finished? ").replace(" ", "_")
 
-    dirs_in_current_work = list(current_work_path.glob("*/"))
+    dirs_in_current_work = list(current_work_path.glob("[!.]*/"))
     if len(dirs_in_current_work) > 1:
         print("Found multiple directories inside ./current_work! Aborting")
     elif len(dirs_in_current_work) == 0:
