@@ -8,7 +8,7 @@ import useDarkMode from 'use-dark-mode';
 import Layout from '../components/layout';
 
 
-const api_url = "http://localhost:4000"
+const api_url = "https://game-assistant.gigalixirapp.com"
 
 
 interface CodeAPI {
@@ -247,7 +247,7 @@ export default () => {
       <Konami action={() => setKonamiCodePressed(true)} />
 
 
-      <h2>Hi! I'm your diff assistant. I'll tell you what the code should look like at the end of any chapter.</h2>
+      <h2>Hi! I'm your diff assistant. I'll tell you what the code should look like at the end of any section.</h2>
       <label>
         What project are you working on?
         <form onSubmit={() => { }}>
