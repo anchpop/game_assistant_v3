@@ -27,7 +27,7 @@ interface ChaptersListingAPI {
   chapters: string[];
 }
 
-
+const removeComments = (s) => s.replace(/(\/\*[^*]*\*\/)|(\/\/[^*]*)/g, '');
 
 // Interface for the Counter component state
 interface CounterState {
@@ -224,8 +224,8 @@ export default () => {
 
 
   const studentDiff = <ReactDiffViewer
-    oldValue={userCode}
-    newValue={correctCode}
+    oldValue={removeComments(userCode)}
+    newValue={removeComments(correctCode)}
     splitView={false}
     leftTitle={`${fileSelected} (STUDENT)`}
     rightTitle={`${fileSelected} (TEXTBOOK)`}
@@ -233,8 +233,8 @@ export default () => {
     showAdded={false}
   />
   const teacherDiff = <ReactDiffViewer
-    oldValue={userCode}
-    newValue={correctCode}
+    oldValue={removeComments(userCode)}
+    newValue={removeComments(correctCode)}
     splitView={true}
     leftTitle={`${fileSelected} (STUDENT)`}
     rightTitle={`${fileSelected} (TEXTBOOK)`}

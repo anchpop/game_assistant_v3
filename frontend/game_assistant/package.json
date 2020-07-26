@@ -15,7 +15,7 @@
     "gatsby-transformer-sharp": "^2.5.7",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
-    "react-diff-viewer": "github:anchpop/react-diff-viewer#f66f4243094984525f01895394724cfdedd523b0",
+    "react-diff-viewer": "github:anchpop/react-diff-viewer#05a4751282d52283953c2a9bbad17b67c768e36f",
     "react-dom": "^16.12.0",
     "react-helmet": "^6.1.0",
     "react-konami-code": "^2.0.0-beta.1",
