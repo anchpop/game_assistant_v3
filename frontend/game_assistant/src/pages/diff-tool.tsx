@@ -27,7 +27,7 @@ interface ChaptersListingAPI {
   chapters: string[];
 }
 
-const removeComments = (s) => s.replace(/(\/\*[^*]*\*\/)|(\/\/[^*]*)/g, '');
+const removeComments = (s) => s.replace(/\/\*[\s\S]*?\*\/|\/\/.*/g, '');
 
 // Interface for the Counter component state
 interface CounterState {
