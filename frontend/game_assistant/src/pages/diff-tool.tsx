@@ -28,6 +28,16 @@ interface ChaptersListingAPI {
 }
 
 const removeComments = (s) => s.replace(/\/\*[\s\S]*?\*\/|\/\/.*/g, '');
+const removeEmptyLines = (s) => s.replace(/^\s*[\r\n]/gm, '');
+const removeTrailingSpaces = (s) => s.split(/\r?\n/).map(sp => sp.replace(/\s+$/m, '')).join('\n')
+const removeInternalExtraWhitespace = (s) => {
+  let leadingSpaces = s.search(/\S|$/)
+  let deduped = s.replace(/ +/g, ' ')
+  return leadingSpaces > 0 ? " ".repeat(leadingSpaces - 1) + deduped : deduped
+};
+
+const normalize = (s) => removeInternalExtraWhitespace(removeTrailingSpaces(removeComments(removeEmptyLines(s))))
+
 
 // Interface for the Counter component state
 interface CounterState {
@@ -224,8 +234,8 @@ export default () => {
 
 
   const studentDiff = <ReactDiffViewer
-    oldValue={removeComments(userCode)}
-    newValue={removeComments(correctCode)}
+    oldValue={normalize(userCode)}
+    newValue={normalize(correctCode)}
     splitView={false}
     leftTitle={`${fileSelected} (STUDENT)`}
     rightTitle={`${fileSelected} (TEXTBOOK)`}
@@ -233,8 +243,8 @@ export default () => {
     showAdded={false}
   />
   const teacherDiff = <ReactDiffViewer
-    oldValue={removeComments(userCode)}
-    newValue={removeComments(correctCode)}
+    oldValue={normalize(userCode)}
+    newValue={normalize(correctCode)}
     splitView={true}
     leftTitle={`${fileSelected} (STUDENT)`}
     rightTitle={`${fileSelected} (TEXTBOOK)`}
