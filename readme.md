@@ -1,3 +1,5 @@
+Visible at <http://diff.prototools.net/>
+
 This is a website for utilities that might be useful for readers of [Introduction to Game Design, Prototyping, and Development](http://book.prototools.net/) by Jeremy Bond. The backend (found in `backend/game_assistant`) is written with Elixir's Phoenix. The frontend (found in `frontend/game_assistant`) is written in React and TypeScript using the static site generator Gatsby.
 
 # Requirements
