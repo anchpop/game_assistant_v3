@@ -20,7 +20,7 @@ Finally, start Phoenix with `mix phx.server`
 
 The backend is currently set up with Gigalixir. To deploy, first make sure you have the gigalixir remote added:
 
-    git remote add gigalixir https://andre%40popovit.ch:7d055dc0-7893-40d3-b7f3-73bb9eb35e2a@git.gigalixir.com/game-assistant.git
+    git remote add gigalixir <gigalixir remote>
 
 (The remote is secret, don't share it with anyone!)
 
